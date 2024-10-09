@@ -111,8 +111,8 @@ public class HttpImageStatusCli {
                     out.write(serverResponse.getBytes());
                     out.flush();
                 }
-                catch (RuntimeException e){
-                    String htmlResponse = "There is not image for HTTP status <CODE>";
+                catch (IncorrectCodeExeptions e){
+                    String htmlResponse = "There is not image for HTTP status <"+inputText+">";
                     String serverResponse = "HTTP/1.1 200 OK" + END_OF_MESSAGE_MARK +
                             "Content-Type: text/html" + END_OF_MESSAGE_MARK +
                             "Content-Length: " + htmlResponse.length() + END_OF_MESSAGE_MARK +
@@ -138,6 +138,8 @@ public class HttpImageStatusCli {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IncorrectCodeExeptions e) {
             throw new RuntimeException(e);
         } finally {
             try {
