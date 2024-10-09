@@ -2,12 +2,10 @@ package org.example;
 
 import java.io.*;
 import java.net.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class HttpImageStatusCli {
+public class HttpImageStatusUi {
     private static final String END_OF_MESSAGE_MARK = "\n";
     private static ExecutorService pool;
     private static ServerSocket serverSocket;

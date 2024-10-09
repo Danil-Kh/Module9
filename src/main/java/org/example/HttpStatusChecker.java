@@ -5,13 +5,10 @@ import java.net.*;
 
 public class HttpStatusChecker {
     private String response;
-    private String getStatusImage(String inputText)  {
+    private String getStatusImage(String inputText) throws IncorrectCodeExeptions {
         try {
-            String scheme = "https";
-            String host = "http.cat";
-            String path = "/status/" + inputText;
 
-            URI uri = new URI(scheme, host, path, null);
+            URI uri = new URI("https://http.cat/status/" + inputText);
 
             URL url = uri.toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -21,16 +18,18 @@ public class HttpStatusChecker {
                 response = "https://http.cat/"+inputText+".jpg";
             }
             else {
-                throw new RuntimeException();
+                throw new IncorrectCodeExeptions("Error");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
+        } catch (IncorrectCodeExeptions e) {
+            throw new  IncorrectCodeExeptions("Error");
         }
         return response;
     }
-    public String getResponse(String inputText)  {
+    public String getResponse(String inputText) throws IncorrectCodeExeptions {
         return getStatusImage(inputText);
     }
 }

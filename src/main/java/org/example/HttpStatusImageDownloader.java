@@ -13,11 +13,11 @@ import java.nio.file.Path;
 
 public class HttpStatusImageDownloader {
     HttpStatusChecker httpStatusChecker = new HttpStatusChecker();
-    public void downloadStatusImage(String code) throws IOException, URISyntaxException {
+    public void downloadStatusImage(String code) throws IOException, IncorrectCodeExeptions {
         String url = httpStatusChecker.getResponse(code);
         URL urlObj = new URL(url);
         InputStream inputStream = urlObj.openStream();
-           if(!Files.exists(Path.of("C:\\Java programs\\module9_1\\src\\main\\resources\\image\\"+code+".jpg"))){
+           if(!Files.exists(Path.of("resources\\image\\"+code+".jpg"))){
                Files.copy(inputStream, new File("C:\\Java programs\\module9_1\\src\\main\\resources\\image\\"+code+".jpg").toPath());
            }
     }
